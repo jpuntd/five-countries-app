@@ -11,7 +11,6 @@ const { storeExchangeRates, datesBetween } = require('./services/currency');
         'GBR',
         'USA'
     ];
-
     // get information from restcountries.eu api and store in the database
     try {
         await Promise.all(countries.map(storeCountryInfo));
