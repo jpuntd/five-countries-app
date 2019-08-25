@@ -9,13 +9,22 @@ background-color: white;
 `;
 
 function ExchangeRates(props) {
-    const [rates, setRates] = useState([]);
     const url = `http://localhost:${port}/currency/now`;
+    const [rates, setRates] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(url);
-            let json = await response.json();
-            setRates(json);
+            setIsError(false);
+            setIsLoading(true);
+            try {
+                const response = await fetch(url);
+                let json = await response.json();
+                setRates(json);
+            } catch (err) {
+                setIsError(true);
+            }
+            setIsLoading(false);
         }
         fetchData();
     }, []);
@@ -23,6 +32,8 @@ function ExchangeRates(props) {
     return (
         <ChartContainer>
             <h2>Exchange Rate in EUR</h2>
+            {isError && <div>Something went wrong ...</div>}
+            {isLoading && <div>Loading ...</div>}
             <LineChart width={500} height={400} data={rates}>
                 <CartesianGrid stroke="#ccc" />
                 <XAxis dataKey="shortdate" />
