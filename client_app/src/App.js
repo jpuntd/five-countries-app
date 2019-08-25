@@ -7,8 +7,8 @@ import InfoContainer from './components/infocontainer';
 function App() {
   return (
     <div className="App">
-      <InfoContainer />
       <CountriesContainer />
+      <InfoContainer />
     </div>
   );
 }
