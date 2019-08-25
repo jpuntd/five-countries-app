@@ -1,4 +1,4 @@
-const moment = require('moment')
+const moment = require('moment');
 const { storeCountryInfo } = require('./services/country');
 const { storeWeather } = require('./services/weather');
 const { storeExchangeRates, datesBetween } = require('./services/currency');
