@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const axios = require('axios');
 const moment = require('moment');
 const db = require('../db/init.js');
@@ -42,11 +42,4 @@ function datesBetween(startDate, endDate = Date()) {
     return dates;
 }
 
-console.log(datesBetween(moment().subtract(5, 'days'), moment()));
-
-(async function () {
-    await Promise.all(
-    datesBetween(moment().subtract(5, 'days'), moment())
-    .map(storeExchangeRates)
-    );
-})();
+module.exports = { storeExchangeRates, datesBetween }
