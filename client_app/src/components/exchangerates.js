@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-import { endpoint } from '../config.js';
+import { port } from '../config';
+
+const ChartContainer = styled.div`
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+`;
 
 function ExchangeRates(props) {
     const [rates, setRates] = useState([]);
-    const url = endpoint + '/currency/now';
+    const url = `http://localhost:${port}/currency/now`;
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(url);
@@ -15,7 +20,7 @@ function ExchangeRates(props) {
     }, []);
 
     return (
-        <div>
+        <ChartContainer>
             <h2>Exchange Rate in EUR</h2>
             <LineChart width={500} height={400} data={rates}>
                 <CartesianGrid stroke="#ccc" />
@@ -29,7 +34,7 @@ function ExchangeRates(props) {
                 <Line type="monotone" dataKey="gbp" stroke="#888888" />
                 <Line type="monotone" dataKey="usd" stroke="orange" />
             </LineChart>
-        </div>
+        </ChartContainer>
     );
 }
 

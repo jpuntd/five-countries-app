@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Column = styled.div`
 background-color: white;
 padding-bottom: 1em;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 img.flag {
     width: 100%;
 }
