@@ -14,17 +14,28 @@ margin-top: 1em;
 
 function CountriesContainer() {
   const [countries, setCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(url);
-      const json = await response.json();
-      setCountries(json);
+      setIsError(false);
+      setIsLoading(true);
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setCountries(json);
+      } catch (err) {
+        setIsError(true);
+      }
+      setIsLoading(false);
     }
     fetchData();
   }, []);
 
   return (
     <Container>
+      {isError && <div>Something went wrong ...</div>}
+      {isLoading && <div>Loading ...</div>}
       {countries.map(c =>
         <Country key={c.id} info={c} />)}
     </Container>
