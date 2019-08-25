@@ -27,13 +27,15 @@ function selectValues({ data }, country_code) {
 
 function dbWeather(values) {
     const sql = `INSERT INTO weather(country_code, date, weather_description, temp, temp_min, temp_max, windspeed) 
-    VALUES($1, $2, $3, $4, $5, $6, $7) 
-    `;
+        VALUES($1, $2, $3, $4, $5, $6, $7) 
+        ON CONFLICT (country_code, date) DO NOTHING
+        `;
     return db.query(sql, values);
 }
 
 function storeWeather(country_code) {
     // we need to convert 3 character code (eg GRB) to 2 character code anyway
+    // capitals returned by countries api differ in spellng
     // let's store capital in the lookup table as well
     const capital = {
         AUS: 'Canberra, AU',

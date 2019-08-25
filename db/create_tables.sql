@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS
 		flag VARCHAR(128) NOT NULL,
         unique(code)
     );
-
 CREATE TABLE IF NOT EXISTS
     weather(
         id SERIAL PRIMARY KEY,
@@ -20,5 +19,17 @@ CREATE TABLE IF NOT EXISTS
         temp REAL,                       
         temp_min REAL,            
         temp_max REAL,            
-        windspeed REAL
+        windspeed REAL,
+        unique(country_code, date)
     );  
+CREATE TABLE IF NOT EXISTS
+    exchangerates(
+        id SERIAL PRIMARY KEY,
+        date DATE NOT NULL,
+        aud REAL,
+        brl REAL,
+        cny REAL,
+        gbp REAL,
+        usd REAL,
+        unique(date) 
+ );   

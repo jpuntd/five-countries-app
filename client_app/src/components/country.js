@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Column = styled.div`
@@ -10,10 +10,10 @@ img.flag {
 `;
 
 function Country({ info }) {
-    let population = Math.round(info.population / 1000000) + 'million';
+    let population = Math.round(info.population / 1000000) + ' million';
   return (
     <Column>
-        <img className="flag" src={info.flag} />
+        <img className="flag" src={info.flag} alt="flag"/>
         <h2>{info.name}</h2>
         <div><i className="fa fa-phone">&nbsp;</i>{info.calling_code}</div>
         <div><i className="fa fa-map-marker">&nbsp;</i>{info.capital}</div>
