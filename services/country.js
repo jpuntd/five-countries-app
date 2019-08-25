@@ -23,4 +23,4 @@ function storeCountryInfo(country_code) {
         .catch(err => console.error(err));
 }
 
-module.exports = storeCountryInfo;
+module.exports = { storeCountryInfo };
