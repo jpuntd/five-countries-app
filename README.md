@@ -1,7 +1,3 @@
-## Design
-
-As the goal was to reach out to 3 web services, store the data and combine the data in a report, it seemed natural to me to have the following design:
-
 A client app with a webserver. When the webserver receives a request from the client app, it checks if the information is available in the db. If not, it gets the data from the external webservice and caches it in the db. External webservice is only called when the information is not yet stored in the db.
 
 There was however no way to get historical data from openweathermap.org. So we would need to call that webservice periodically to make sure we have weather info for everyday. 
